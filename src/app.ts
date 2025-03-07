@@ -9,12 +9,15 @@ let currentKaruta: Karuta | null = null;
 let correctCount = 0;
 let totalCount = 0;
 
-// ページ読み込み時にJSONデータを取得
+// 📥 JSONデータを読み込み
 fetch('karuta.json')
     .then(response => response.json())
     .then((data: Karuta[]) => {
         karutaList = data;
         nextQuestion();
+    })
+    .catch(error => {
+        console.error("データの読み込みに失敗しました", error);
     });
 
 function nextQuestion() {
@@ -22,15 +25,17 @@ function nextQuestion() {
     const choicesDiv = document.getElementById('choices')!;
     const result = document.getElementById('result')!;
     const nextButton = document.getElementById('nextButton')!;
+    const score = document.getElementById('score')!;
 
     result.textContent = '';
     choicesDiv.innerHTML = '';
+    nextButton.style.display = 'none';
 
-    // ランダムに1首選ぶ
+    // ランダムに1首を選ぶ
     currentKaruta = karutaList[Math.floor(Math.random() * karutaList.length)];
     upperText.textContent = currentKaruta.upper;
 
-    // 下の句を4択（正解+不正解3つ）
+    // 4択問題（正解1＋不正解3）
     const wrongChoices = karutaList
         .filter(k => k.number !== currentKaruta!.number)
         .sort(() => Math.random() - 0.5)
@@ -46,26 +51,31 @@ function nextQuestion() {
         choicesDiv.appendChild(button);
     });
 
-    nextButton.style.display = 'none';
+    // 現在のスコアを表示
+    score.textContent = `正解数: ${correctCount} / ${totalCount}`;
 }
 
 function checkAnswer(selected: string) {
     const result = document.getElementById('result')!;
     const nextButton = document.getElementById('nextButton')!;
+    const score = document.getElementById('score')!;
 
     totalCount++;
 
     if (selected === currentKaruta!.lower) {
         correctCount++;
-        result.innerHTML = `正解！🎉<br>現在の成績：${correctCount} / ${totalCount}`;
+        result.innerHTML = `正解！🎉`;
         result.style.color = 'green';
     } else {
-        result.innerHTML = `残念！正解は「${currentKaruta!.lower}」<br>現在の成績：${correctCount} / ${totalCount}`;
+        result.innerHTML = `残念！正解は「${currentKaruta!.lower}」です`;
         result.style.color = 'red';
     }
+
+    // スコア更新
+    score.textContent = `正解数: ${correctCount} / ${totalCount}`;
 
     nextButton.style.display = 'inline-block';
 }
 
-// 「次の問題」ボタンにイベント登録
+// 「次の問題へ」ボタンのクリックイベント登録
 document.getElementById('nextButton')!.addEventListener('click', nextQuestion);
