@@ -3,17 +3,15 @@
 <head>
     <title>百人一首クイズ - 和風</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Hannari&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div class="game-container">
         <h1>百人一首クイズ - 和風</h1>
-        <div id="quiz-area">
-            <p id="upperText">ここに上の句が表示されるよ</p>
-            <div id="choices"></div>
-            <p id="result"></p>
-        </div>
-        <button id="nextButton">次の問題へ</button>
+        <div id="upperText" class="upper-text">上の句がここに表示されます</div>
+        <div id="choices" class="choices"></div>
+        <div id="result" class="result"></div>
+        <div id="scoreDisplay" class="score-display">成績: 0 / 0 （正答率: 0%）</div>
+        <button id="nextButton" style="display:none;">次の問題へ</button>
     </div>
     <script src="app.js"></script>
 </body>
