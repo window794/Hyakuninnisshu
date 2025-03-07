@@ -6,6 +6,8 @@ type Karuta = {
 
 let karutaList: Karuta[] = [];
 let currentKaruta: Karuta | null = null;
+let correctCount = 0;
+let totalCount = 0;
 
 // ページ読み込み時にJSONデータを取得
 fetch('karuta.json')
@@ -51,11 +53,14 @@ function checkAnswer(selected: string) {
     const result = document.getElementById('result')!;
     const nextButton = document.getElementById('nextButton')!;
 
+    totalCount++;
+
     if (selected === currentKaruta!.lower) {
-        result.textContent = '正解！🎉';
+        correctCount++;
+        result.innerHTML = `正解！🎉<br>現在の成績：${correctCount} / ${totalCount}`;
         result.style.color = 'green';
     } else {
-        result.textContent = `残念！正解は「${currentKaruta!.lower}」`;
+        result.innerHTML = `残念！正解は「${currentKaruta!.lower}」<br>現在の成績：${correctCount} / ${totalCount}`;
         result.style.color = 'red';
     }
 
