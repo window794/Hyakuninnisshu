@@ -9,7 +9,9 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 };
 var karutaList = [];
 var currentKaruta = null;
-// ページ読み込み時にJSONデータを取得
+var correctCount = 0; // ←グローバル変数に配置
+var totalCount = 0; // ←グローバル変数に配置
+// 📥 JSONデータ読み込み
 fetch('karuta.json')
     .then(function (response) { return response.json(); })
     .then(function (data) {
@@ -21,12 +23,13 @@ function nextQuestion() {
     var choicesDiv = document.getElementById('choices');
     var result = document.getElementById('result');
     var nextButton = document.getElementById('nextButton');
+    var scoreDisplay = document.getElementById('scoreDisplay');
     result.textContent = '';
     choicesDiv.innerHTML = '';
-    // ランダムに1首選ぶ
+    // 次の問題をランダム選択
     currentKaruta = karutaList[Math.floor(Math.random() * karutaList.length)];
     upperText.textContent = currentKaruta.upper;
-    // 下の句を4択（正解+不正解3つ）
+    // 選択肢を作成（正解1つ + 不正解3つ）
     var wrongChoices = karutaList
         .filter(function (k) { return k.number !== currentKaruta.number; })
         .sort(function () { return Math.random() - 0.5; })
@@ -40,19 +43,30 @@ function nextQuestion() {
         choicesDiv.appendChild(button);
     });
     nextButton.style.display = 'none';
+    // 🔥 ここで毎回スコア表示を更新（リセットじゃないよ！）
+    updateScore();
 }
 function checkAnswer(selected) {
     var result = document.getElementById('result');
     var nextButton = document.getElementById('nextButton');
+    totalCount++; // 問題を解いた回数を加算
     if (selected === currentKaruta.lower) {
-        result.textContent = '正解！🎉';
+        correctCount++; // 正解なら加算
+        result.innerHTML = "\u6B63\u89E3\uFF01\uD83C\uDF89";
         result.style.color = 'green';
     }
     else {
-        result.textContent = "\u6B8B\u5FF5\uFF01\u6B63\u89E3\u306F\u300C".concat(currentKaruta.lower, "\u300D");
+        result.innerHTML = "\u6B8B\u5FF5\uFF01\u6B63\u89E3\u306F\u300C".concat(currentKaruta.lower, "\u300D");
         result.style.color = 'red';
     }
+    updateScore(); // スコア再計算
     nextButton.style.display = 'inline-block';
 }
-// 「次の問題」ボタンにイベント登録
+// 💯 スコア表示を更新
+function updateScore() {
+    var scoreDisplay = document.getElementById('scoreDisplay');
+    var accuracy = totalCount === 0 ? 0 : ((correctCount / totalCount) * 100).toFixed(2);
+    scoreDisplay.textContent = "\u6210\u7E3E: ".concat(correctCount, " / ").concat(totalCount, " \uFF08\u6B63\u7B54\u7387: ").concat(accuracy, "%\uFF09");
+}
+// 「次の問題へ」ボタンにイベント登録
 document.getElementById('nextButton').addEventListener('click', nextQuestion);
