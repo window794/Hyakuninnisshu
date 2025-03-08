@@ -1,71 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Hannari&display=swap');
+
 body {
-    font-family: 'Hannari', 'Arial', sans-serif;
-    background-color: #f7f4e9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-@font-face {
-    font-family: 'Hannari';
-    src: url('https://fonts.gstatic.com/ea/hannari/v6/Hannari-Regular.eot');
-    src: url('https://fonts.gstatic.com/ea/hannari/v6/Hannari-Regular.eot?#iefix') format('embedded-opentype'),
-         url('https://fonts.gstatic.com/ea/hannari/v6/Hannari-Regular.woff2') format('woff2'),
-         url('https://fonts.gstatic.com/ea/hannari/v6/Hannari-Regular.woff') format('woff'),
-         url('https://fonts.gstatic.com/ea/hannari/v6/Hannari-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-.game-container {
-    background-color: white;
-    border: 5px solid green;
-    padding: 20px;
-    text-align: center;
-    width: 600px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     font-family: 'Hannari', serif;
+    background-color: #f7f3e9;
+    text-align: center;
 }
 
-.upper-text {
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border: 3px solid green;
+    border-radius: 10px;
+}
+
+h1 {
     font-size: 24px;
+    color: #444;
+}
+
+.karuta-card {
+    font-size: 24px;
+    font-weight: bold;
+    border: 2px solid green;
+    padding: 20px;
     margin-bottom: 20px;
-    color: #333;
+    display: inline-block;
 }
 
 .choices button {
-    width: 90%;
-    padding: 10px;
+    display: block;
+    width: 100%;
     margin: 5px 0;
+    padding: 10px;
     font-size: 18px;
-    background-color: white;
     border: 2px solid green;
+    background: white;
     cursor: pointer;
-    font-family: 'Hannari', serif;
 }
 
 .choices button:hover {
-    background-color: #f0f8ff;
+    background: #eef;
 }
 
-.result {
-    margin: 15px 0;
-    font-size: 20px;
-    font-weight: bold;
+.hidden {
+    display: none;
 }
 
-.score-display {
-    font-size: 16px;
-    color: #555;
-}
-
-#nextButton {
+.button {
+    display: inline-block;
     padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    background-color: green;
+    background: green;
     color: white;
-    border: none;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px;
 }
