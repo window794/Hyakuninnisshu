@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>百人一首クイズ</title>
+    <title>百人一首クイズ - 和風</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>百人一首クイズ・和風</h1>
-        <a href="quiz.html" class="button">クイズを開始</a>
-        <a href="review.html" class="button">復習モード</a>
+    <div class="game-container">
+        <h1>百人一首クイズ - 和風</h1>
+        <div id="upperText" class="upper-text">上の句がここに表示されます</div>
+        <div id="choices" class="choices"></div>
+        <div id="result" class="result"></div>
+        <div id="scoreDisplay" class="score-display">成績: 0 / 0 （正答率: 0%）</div>
+        <button id="nextButton" style="display:none;">次の問題へ</button>
     </div>
+    <script src="app.js"></script>
 </body>
 </html>
