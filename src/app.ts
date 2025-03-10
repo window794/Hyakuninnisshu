@@ -33,7 +33,7 @@ function nextQuestion() {
     upperText.textContent = currentKaruta.upper;
 
     // お気に入りボタンの状態更新
-    updateFavoriteButton();
+    // updateFavoriteButton();
 
     const wrongChoices = karutaList
         .filter(k => k.number !== currentKaruta!.number)
@@ -80,32 +80,32 @@ function updateScoreDisplay() {
 }
 
 // ⭐ 復習リスト管理
-function toggleFavorite() {
-    if (!currentKaruta) return;
+// function toggleFavorite() {
+//     if (!currentKaruta) return;
 
-    const index = favoriteList.findIndex(k => k.number === currentKaruta!.number);
+//     const index = favoriteList.findIndex(k => k.number === currentKaruta!.number);
 
-    if (index !== -1) {
-        favoriteList.splice(index, 1); // 既にある場合は削除
-    } else {
-        favoriteList.push(currentKaruta); // ない場合は追加
-    }
+//     if (index !== -1) {
+//         favoriteList.splice(index, 1); // 既にある場合は削除
+//     } else {
+//         favoriteList.push(currentKaruta); // ない場合は追加
+//     }
 
-    localStorage.setItem('favorites', JSON.stringify(favoriteList));
-    updateFavoriteButton();
-}
+//     localStorage.setItem('favorites', JSON.stringify(favoriteList));
+//     updateFavoriteButton();
+// }
 
-function updateFavoriteButton() {
-    const favoriteButton = document.getElementById('favoriteButton')!;
-    if (currentKaruta && favoriteList.some(k => k.number === currentKaruta.number)) {
-        favoriteButton.textContent = '★ 復習リストから削除';
-    } else {
-        favoriteButton.textContent = '☆ 復習リストに追加';
-    }
-}
+// function updateFavoriteButton() {
+//     const favoriteButton = document.getElementById('favoriteButton')!;
+//     if (currentKaruta && favoriteList.some(k => k.number === currentKaruta.number)) {
+//         favoriteButton.textContent = '★ 復習リストから削除';
+//     } else {
+//         favoriteButton.textContent = '☆ 復習リストに追加';
+//     }
+// }
 
 // 「次の問題」ボタン
 document.getElementById('nextButton')!.addEventListener('click', nextQuestion);
 
-// 「復習ボタン」
-document.getElementById('favoriteButton')!.addEventListener('click', toggleFavorite);
+// // 「復習ボタン」
+// document.getElementById('favoriteButton')!.addEventListener('click', toggleFavorite);
