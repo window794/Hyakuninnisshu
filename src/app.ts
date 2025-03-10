@@ -10,7 +10,7 @@ let correctCount = 0;   // ←グローバル変数に配置
 let totalCount = 0;     // ←グローバル変数に配置
 
 // 📥 JSONデータ読み込み
-fetch('karuta.json')
+fetch('src/karuta.json')
     .then(response => response.json())
     .then((data: Karuta[]) => {
         karutaList = data;

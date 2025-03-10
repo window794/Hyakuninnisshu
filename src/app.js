@@ -12,7 +12,7 @@ var currentKaruta = null;
 var correctCount = 0; // ←グローバル変数に配置
 var totalCount = 0; // ←グローバル変数に配置
 // 📥 JSONデータ読み込み
-fetch('karuta.json')
+fetch('src/karuta.json')
     .then(function (response) { return response.json(); })
     .then(function (data) {
     karutaList = data;
