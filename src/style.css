@@ -1,59 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Hannari&display=swap');
-
+/* 📌 基本スタイル */
 body {
-    font-family: 'Hannari', serif;
-    background-color: #f7f3e9;
+    font-family: "Hannari", "Yu Mincho", serif; /* はんなり明朝 or 游明朝 */
+    background-color: #f8f5e4; /* 和風のベージュ背景 */
+    color: #333; /* 文字色 */
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    border: 3px solid green;
+/* 📌 ゲームコンテナ */
+.game-container {
+    background-color: white;
+    border: 3px solid #228B22; /* 深緑の枠線 */
     border-radius: 10px;
-}
-
-h1 {
-    font-size: 24px;
-    color: #444;
-}
-
-.karuta-card {
-    font-size: 24px;
-    font-weight: bold;
-    border: 2px solid green;
+    width: 60%;
+    margin: 40px auto;
     padding: 20px;
-    margin-bottom: 20px;
-    display: inline-block;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* 📌 タイトル */
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #228B22;
+    padding-bottom: 5px;
+}
+
+/* 📌 上の句表示 */
+.upper-text {
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+/* 📌 選択肢ボタン */
 .choices button {
     display: block;
-    width: 100%;
-    margin: 5px 0;
+    width: 80%;
+    margin: 10px auto;
     padding: 10px;
-    font-size: 18px;
-    border: 2px solid green;
-    background: white;
+    font-size: 20px;
+    border: 2px solid #228B22;
+    background-color: white;
     cursor: pointer;
+    transition: 0.3s;
+    font-family: "Hannari", "Yu Mincho", serif;
 }
 
 .choices button:hover {
-    background: #eef;
+    background-color: #d8f3dc; /* 選択肢を押すと淡い緑 */
 }
 
-.hidden {
+/* 📌 結果表示 */
+.result {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* 📌 成績表示 */
+.score-display {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* 📌 次の問題ボタン */
+#nextButton {
     display: none;
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 18px;
+    border: none;
+    background-color: #228B22;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
 }
 
-.button {
-    display: inline-block;
-    padding: 10px 20px;
-    background: green;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    margin: 10px;
+#nextButton:hover {
+    background-color: #176c3a;
+}
+
+/* 📌 和風フォントの適用 */
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap');
+
+body {
+    font-family: "Shippori Mincho", "Yu Mincho", serif;
 }
